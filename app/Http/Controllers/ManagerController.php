@@ -35,7 +35,6 @@ class ManagerController extends Controller
         }
 
            return $data;
-      //  return response()->json($data);
         }
 
         private function getItems($rss) {
@@ -101,19 +100,38 @@ class ManagerController extends Controller
             return $resul;
         }
 
-
-        public function todayNews(Request $request){
-
-           $data = $this->formatData();
-
-           return $data;
-        }
-
-        public function newsByCategory(Request $request){
+        public function allNews(Request $request){
 
             $data = $this->formatData();
 
             return $data;
+
+        }
+
+        public function todayNews(Request $request){
+
+            $val = (object)$request->only([
+               'dt_today'
+            ]);
+
+            $data = $this->formatData();
+
+            $result =  collect($data['dados'])->Where('pubDate',$val->dt_today);
+
+           return $result;
+        }
+
+        public function newsByCategory(Request $request){
+
+            $val = (object)$request->only([
+                'category'
+            ]);
+
+            $data = $this->formatData();
+
+            $result =  collect($data['dados'])->Where('category',$val->category);
+
+            return $result;
 
         }
 

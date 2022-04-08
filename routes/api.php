@@ -16,10 +16,11 @@ use App\Http\Controllers\ManagerController;
 */
 Route::get('/convert', [ManagerController::class,'convertData']);
 
-Route::get('/todayNews', [ManagerController::class,'todayNews']);
+Route::get('/news-today/{dt_today}', [ManagerController::class,'todayNews']);
 
-Route::get('/newsByCategory', [ManagerController::class,'newsByCategory']);
+Route::get('/news-category/{category}', [ManagerController::class,'newsByCategory']);
 
+Route::get('/news-all', [ManagerController::class,'allNews']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
