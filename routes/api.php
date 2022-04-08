@@ -14,7 +14,12 @@ use App\Http\Controllers\ManagerController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/convert', [ManagerController::class,'convert']);
+Route::get('/convert', [ManagerController::class,'convertData']);
+
+Route::get('/todayNews', [ManagerController::class,'todayNews']);
+
+Route::get('/newsByCategory', [ManagerController::class,'newsByCategory']);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
